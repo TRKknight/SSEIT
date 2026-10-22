@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emotional Intelligence Questionnaire (SSEIT)</title>
+  <meta name="description" content="A 33-item self-report measure of emotional intelligence with an instant score.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <section id="intro" class="card">
+      <p class="eyebrow">Research questionnaire</p>
+      <h1>Emotional Intelligence Questionnaire</h1>
+      <p class="lede">This short survey contains 33 statements about how you notice, understand, and use emotions. It takes about 5 minutes.</p>
+      <ul class="facts">
+        <li><strong>Anonymous.</strong> No names, emails, or account details are collected.</li>
+        <li><strong>Voluntary.</strong> You can stop at any point before submitting.</li>
+        <li><strong>Instant result.</strong> Your score is shown as soon as you submit.</li>
+      </ul>
+      <p class="muted">For each statement, choose how strongly you agree, from 1 (strongly disagree) to 5 (strongly agree). Answer as you generally are, not how you think you should be.</p>
+      <button id="start-btn" class="btn primary" type="button">Begin questionnaire</button>
+    </section>
+
+    <form id="survey" class="card" hidden novalidate>
+      <div class="survey-head">
+        <div class="progress-meta">
+          <span id="answered-count">0 of 33 answered</span>
+          <span id="percent">0%</span>
+        </div>
+        <div class="progress" role="progressbar" aria-labelledby="answered-count" aria-valuemin="0" aria-valuemax="33" aria-valuenow="0">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="scale-head" aria-hidden="true">
+        <span>Strongly disagree</span>
+        <span>Disagree</span>
+        <span>Neutral</span>
+        <span>Agree</span>
+        <span>Strongly agree</span>
+      </div>
+
+      <div id="items" class="items"></div>
+
+      <p id="form-error" class="error" role="alert" hidden></p>
+
+      <div class="actions">
+        <button class="btn primary" type="submit" id="submit-btn">Submit and see my score</button>
+        <p class="muted small">Submitting stores only your 33 answers and the total score.</p>
+      </div>
+    </form>
+
+    <section id="result" class="card" hidden tabindex="-1" aria-live="polite">
+      <p class="eyebrow">Your result</p>
+      <h2 id="result-heading">Your emotional intelligence score</h2>
+
+      <div class="score-grid">
+        <div class="score-block">
+          <span class="score-value" id="total-score">0</span>
+          <span class="score-label">out of 165</span>
+        </div>
+        <div class="score-block">
+          <span class="score-value" id="mean-score">0.00</span>
+          <span class="score-label">average per item (1 to 5)</span>
+        </div>
+      </div>
+
+      <div class="meter" aria-hidden="true">
+        <div class="meter-fill" id="meter-fill"></div>
+        <div class="meter-mid" title="Scale midpoint (99)"></div>
+      </div>
+      <div class="meter-labels">
+        <span>33</span>
+        <span>midpoint 99</span>
+        <span>165</span>
+      </div>
+
+      <p id="interpretation" class="lede"></p>
+      <p class="muted small">The SSEIT has no validated clinical cut-offs. The midpoint of 99 represents a neutral average answer. Interpret your total alongside the norms used in your study.</p>
+
+      <p id="save-status" class="status" role="status"></p>
+
+      <div class="actions row">
+        <button id="print-btn" class="btn" type="button">Save or print result</button>
+        <button id="restart-btn" class="btn ghost" type="button">Start a new response</button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Schutte Self-Report Emotional Intelligence Test (SSEIT), Schutte et al. (1998). Research use only.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
