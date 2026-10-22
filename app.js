@@ -1,4 +1,5 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1pSjjxhUc52_U3iEIAQ7JRWHj0CFbL2pYtr5n79fwdj_rmYDUpPiAg8gCBBGtkoFDUg/exec";
+const FORM_TOKEN = "7d21373b7d61c439a587a4eabe2800d9";
 
 const SCALE = [
   { value: 1, label: "Strongly disagree" },
@@ -230,6 +231,8 @@ els.form.addEventListener("submit", async (event) => {
   els.saveStatus.textContent = "Saving your responses...";
 
   const saved = await saveResponse({
+    token: FORM_TOKEN,
+    honeypot: document.getElementById("company_website").value,
     responses: answers,
     total,
     mean: Number(mean.toFixed(2)),
@@ -237,8 +240,8 @@ els.form.addEventListener("submit", async (event) => {
   });
 
   els.saveStatus.textContent = saved
-    ? "Your responses were recorded anonymously. Thank you."
-    : "Your score is shown, but your responses could not be saved. Please inform the researcher.";
+    ? "Your responses were submitted anonymously. Thank you."
+    : "Your score is shown, but your responses could not be sent. Please inform the researcher.";
 });
 
 document.getElementById("start-btn").addEventListener("click", startSurvey);
