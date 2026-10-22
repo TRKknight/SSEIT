@@ -243,6 +243,14 @@ input:focus-visible + span {
   font-size: .92rem;
 }
 
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .actions { display: grid; gap: .6rem; margin-top: 1.5rem; justify-items: start; }
 .actions.row { display: flex; flex-wrap: wrap; gap: .6rem; justify-items: initial; }
 .actions .muted { margin: 0; }
