@@ -3,62 +3,115 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Emotional Intelligence Questionnaire (SSEIT)</title>
-  <meta name="description" content="A 33-item self-report measure of emotional intelligence with an instant score.">
+  <title>Emotional Intelligence and Lifestyle Study</title>
+  <meta name="description" content="A research questionnaire on emotional intelligence, lifestyle, and diet with an instant emotional intelligence score.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="wrap">
-    <section id="intro" class="card">
+    <header class="site-head">
       <p class="eyebrow">Research questionnaire</p>
-      <h1>Emotional Intelligence Questionnaire</h1>
-      <p class="lede">This short survey contains 33 statements about how you notice, understand, and use emotions. It takes about 5 minutes.</p>
-      <ul class="facts">
-        <li><strong>Anonymous.</strong> No names, emails, or account details are collected.</li>
-        <li><strong>Voluntary.</strong> You can stop at any point before submitting.</li>
-        <li><strong>Instant result.</strong> Your score is shown as soon as you submit.</li>
-      </ul>
-      <p class="muted">For each statement, choose how strongly you agree, from 1 (strongly disagree) to 5 (strongly agree). Answer as you generally are, not how you think you should be.</p>
-      <button id="start-btn" class="btn primary" type="button">Begin questionnaire</button>
-    </section>
+      <h1>Emotional Intelligence and Lifestyle</h1>
+      <p class="lede">33 statements about emotional intelligence, followed by brief questions about your lifestyle and diet. It takes about 6 to 8 minutes.</p>
+      <p class="muted small">Anonymous: no names, emails, accounts, or IP addresses are stored.</p>
+    </header>
 
-    <form id="survey" class="card" hidden novalidate>
-      <div class="survey-head">
-        <div class="progress-meta">
-          <span id="answered-count">0 of 33 answered</span>
-          <span id="percent">0%</span>
+    <form id="survey" novalidate>
+      <div class="topbar">
+        <div class="stepper" aria-hidden="true">
+          <span data-step="1" class="active">1. About you</span>
+          <span data-step="2">2. Emotional intelligence</span>
+          <span data-step="3">3. Lifestyle</span>
         </div>
-        <div class="progress" role="progressbar" aria-labelledby="answered-count" aria-valuemin="0" aria-valuemax="33" aria-valuenow="0">
+        <div class="progress" role="progressbar" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="48" aria-valuenow="0">
           <div id="progress-bar" class="progress-bar"></div>
         </div>
+        <p class="progress-text muted small"><span id="answered-count">0</span> of 48 answered</p>
       </div>
 
-      <div class="scale-head" aria-hidden="true">
-        <span>Strongly disagree</span>
-        <span>Disagree</span>
-        <span>Neutral</span>
-        <span>Agree</span>
-        <span>Strongly agree</span>
-      </div>
+      <section class="card page" data-page="1">
+        <h2 tabindex="-1">Consent and about you</h2>
+        <p>This study collects anonymous responses for research on emotional intelligence, lifestyle, and diet. Participation is voluntary, and you may stop before submitting.</p>
+        <p><a id="consent-link" href="#" target="_blank" rel="noopener">Read the informed consent form</a></p>
 
-      <div id="items" class="items"></div>
+        <label class="check" id="consent-wrap">
+          <input type="checkbox" id="consent" name="consent">
+          <span>I have read the informed consent form carefully and, with my full consent and honesty, I agree to participate in this research study.</span>
+        </label>
+
+        <h3>Demographic details</h3>
+
+        <div class="field" id="age-field">
+          <label for="age">Age <span class="req">*</span></label>
+          <p class="hint">Participants must be between 18 and 27 years of age.</p>
+          <input id="age" name="age" type="number" inputmode="numeric" min="18" max="27" step="1" placeholder="e.g. 21">
+        </div>
+
+        <fieldset class="field" id="sex-field">
+          <legend>Sex <span class="req">*</span></legend>
+          <div class="options inline" id="sex-options"></div>
+        </fieldset>
+
+        <fieldset class="field" id="year-field">
+          <legend>Year <span class="req">*</span></legend>
+          <div class="options" id="year-options"></div>
+        </fieldset>
+
+        <p class="error" id="error-1" role="alert" hidden></p>
+        <div class="actions">
+          <button type="button" class="btn primary" data-next>Continue</button>
+        </div>
+      </section>
+
+      <section class="card page" data-page="2" hidden>
+        <h2 tabindex="-1">Emotional intelligence</h2>
+        <p>For each statement, choose how strongly you agree, from 1 (strongly disagree) to 5 (strongly agree). Answer as you generally are, not how you think you should be.</p>
+
+        <div class="scale-head" aria-hidden="true">
+          <span>Strongly disagree</span>
+          <span>Disagree</span>
+          <span>Neutral</span>
+          <span>Agree</span>
+          <span>Strongly agree</span>
+        </div>
+
+        <div id="items" class="items"></div>
+
+        <p class="error" id="error-2" role="alert" hidden></p>
+        <div class="actions row">
+          <button type="button" class="btn" data-back>Back</button>
+          <button type="button" class="btn primary" data-next>Continue</button>
+        </div>
+      </section>
+
+      <section class="card page" data-page="3" hidden>
+        <h2 tabindex="-1">Lifestyle and diet</h2>
+        <p>These questions help describe the sample. They are not part of your emotional intelligence score.</p>
+
+        <h3>Lifestyle</h3>
+        <div id="lifestyle"></div>
+
+        <h3>Dietary questions</h3>
+        <div id="dietary"></div>
+
+        <p class="error" id="error-3" role="alert" hidden></p>
+        <div class="actions row">
+          <button type="button" class="btn" data-back>Back</button>
+          <button type="submit" class="btn primary" id="submit-btn">Submit and see my score</button>
+        </div>
+      </section>
 
       <div class="hp" aria-hidden="true">
         <label for="company_website">Company website</label>
         <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
       </div>
 
-      <p id="form-error" class="error" role="alert" hidden></p>
-
-      <div class="actions">
-        <button class="btn primary" type="submit" id="submit-btn">Submit and see my score</button>
-        <p class="muted small">Submitting stores only your 33 answers and the total score.</p>
-      </div>
+      <p class="muted small store-note">Submitting stores your answers, your score, and your completion time. No identifying information is collected.</p>
     </form>
 
     <section id="result" class="card" hidden tabindex="-1" aria-live="polite">
       <p class="eyebrow">Your result</p>
-      <h2 id="result-heading">Your emotional intelligence score</h2>
+      <h2>Your emotional intelligence score</h2>
 
       <div class="score-grid">
         <div class="score-block">
@@ -93,7 +146,7 @@
     </section>
 
     <footer class="foot">
-      <p>Schutte Self-Report Emotional Intelligence Test (SSEIT), Schutte et al. (1998). Research use only.</p>
+      <p>Schutte Self-Report Emotional Intelligence Test (SSEIT), Schutte et al. (1998), with adapted wording. Research use only.</p>
     </footer>
   </main>
 
