@@ -505,10 +505,13 @@ input.invalid {
 .foot p { margin: 0; }
 
 @media (max-width: 620px) {
-  .scale-head span:not(:first-child):not(:last-child) { display: none; }
-  .scale-head span:first-child { text-align: left; }
-  .scale-head span:last-child { text-align: right; }
-  .scale-head { font-size: .7rem; }
+  .scale-head {
+    font-size: .62rem;
+    line-height: 1.2;
+    gap: .25rem;
+    padding: 0 .15rem .65rem;
+  }
+  .scale-head span { padding: 0 .1rem; }
   .scale10 { gap: .2rem; }
   .scale10 span { padding: .55rem 0; font-size: .78rem; }
 }
